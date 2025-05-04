@@ -1,0 +1,60 @@
+<ng-container *ngIf="prompt">
+  <mat-card>
+    <mat-card-title>{{ prompt.appName }}</mat-card-title>
+    <mat-card-content>
+      <div>
+        <strong>Prompt:</strong>
+        <pre>{{ prompt.latestVersion?.content }}</pre>
+      </div>
+      <div>
+        <strong>Version:</strong> {{ prompt.latestVersion?.versionId }}
+      </div>
+      <div>
+        <button mat-button (click)="editMode = !editMode">Edit</button>
+        <button mat-button color="primary" (click)="showTest = !showTest">Test My Prompt</button>
+      </div>
+      <div *ngIf="editMode">
+        <textarea [(ngModel)]="editContent" rows="5" style="width:100%"></textarea>
+        <button mat-raised-button color="accent" (click)="saveEdit()">Save</button>
+      </div>
+      <!-- Test Prompt Section -->
+      <div *ngIf="showTest">
+        <mat-form-field appearance="fill" style="width:100%">
+          <mat-label>Context (optional)</mat-label>
+          <textarea matInput [(ngModel)]="testContext" rows="2"></textarea>
+        </mat-form-field>
+        <mat-form-field appearance="fill" style="width:100%">
+          <mat-label>Test Data (optional)</mat-label>
+          <textarea matInput [(ngModel)]="testData" rows="2"></textarea>
+        </mat-form-field>
+        <button mat-raised-button color="primary" (click)="testPrompt()">Run Test</button>
+      </div>
+      <div *ngIf="testLoading">
+        <mat-progress-spinner
+          mode="indeterminate"
+          diameter="30"
+          style="display:block; margin: 1rem auto;">
+        </mat-progress-spinner>
+      </div>
+      <div *ngIf="testResult">
+        <mat-card>
+          <strong>Test Result:</strong>
+          <pre>{{ testResult }}</pre>
+        </mat-card>
+      </div>
+      <!-- Version History -->
+      <div *ngIf="prompt.versions?.length > 1" class="version-history">
+        <h3>Version History</h3>
+        <mat-list>
+          <mat-list-item *ngFor="let v of prompt.versions; let i = index">
+            <div>
+              <strong>Version {{ i + 1 }}:</strong>
+              <span>{{ v.createdAt | date:'short' }}</span>
+              <pre>{{ v.content }}</pre>
+            </div>
+          </mat-list-item>
+        </mat-list>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</ng-container>

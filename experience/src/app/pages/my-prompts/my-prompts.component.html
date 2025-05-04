@@ -1,0 +1,56 @@
+<div class="my-prompts-container">
+  <mat-sidenav-container>
+    <mat-sidenav mode="side" opened>
+      <!-- Filter Section -->
+      <form (ngSubmit)="applyFilter()" style="margin-bottom: 1rem;">
+        <mat-form-field appearance="fill" style="width:100%">
+          <mat-label>Filter by App ID</mat-label>
+          <input matInput [(ngModel)]="filter.appId" name="filterAppId">
+        </mat-form-field>
+        <mat-form-field appearance="fill" style="width:100%">
+          <mat-label>Filter by App Name</mat-label>
+          <input matInput [(ngModel)]="filter.appName" name="filterAppName">
+        </mat-form-field>
+        <button mat-stroked-button color="primary" type="submit">Apply Filter</button>
+        <button mat-button type="button" (click)="clearFilter()">Clear</button>
+      </form>
+
+      <!-- Create New Prompt Section (as before) -->
+      <button mat-raised-button color="primary" (click)="showCreate = !showCreate">
+        {{ showCreate ? 'Cancel' : 'Create New Prompt' }}
+      </button>
+      <form *ngIf="showCreate" (ngSubmit)="createPrompt()" style="margin-top:1rem;">
+        <mat-form-field appearance="fill" style="width:100%">
+          <mat-label>App Name</mat-label>
+          <input matInput [(ngModel)]="newPrompt.appName" name="appName" required>
+        </mat-form-field>
+        <mat-form-field appearance="fill" style="width:100%">
+          <mat-label>App ID</mat-label>
+          <input matInput [(ngModel)]="newPrompt.appId" name="appId" required>
+        </mat-form-field>
+        <mat-form-field appearance="fill" style="width:100%">
+          <mat-label>Prompt Content</mat-label>
+          <textarea matInput [(ngModel)]="newPrompt.content" name="content" required></textarea>
+        </mat-form-field>
+        <mat-checkbox [(ngModel)]="newPrompt.isPublic" name="isPublic">Public</mat-checkbox>
+        <button mat-raised-button color="accent" type="submit">Create</button>
+      </form>
+      <app-prompt-list
+        [prompts]="prompts"
+        (selectPrompt)="onSelectPrompt($event)">
+      </app-prompt-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <app-prompt-detail
+        [prompt]="selectedPrompt"
+        (refresh)="loadPrompts()">
+      </app-prompt-detail>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+  <mat-progress-spinner
+    *ngIf="loading"
+    mode="indeterminate"
+    diameter="40"
+    style="display:block; margin: 2rem auto;">
+  </mat-progress-spinner>
+</div>

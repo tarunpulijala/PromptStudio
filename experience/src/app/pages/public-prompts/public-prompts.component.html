@@ -1,0 +1,24 @@
+<div class="public-prompts-container">
+  <mat-sidenav-container>
+    <mat-sidenav mode="side" opened>
+      <section class="getting-started">
+        <h3>Getting Started</h3>
+        <ul>
+          <li>Try a <strong>Greeting Prompt</strong>: <em>"Say hello in five languages."</em></li>
+          <li>Try a <strong>Summarization Prompt</strong>: <em>"Summarize this text: ..."</em></li>
+          <li>Try a <strong>Creative Prompt</strong>: <em>"Write a short story about a robot and a cat."</em></li>
+        </ul>
+      </section>
+      <app-prompt-list
+        [prompts]="prompts"
+        (selectPrompt)="onSelectPrompt($event)">
+      </app-prompt-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <app-prompt-detail
+        [prompt]="selectedPrompt"
+        (refresh)="loadPrompts()">
+      </app-prompt-detail>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>

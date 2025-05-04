@@ -1,0 +1,7 @@
+<mat-nav-list>
+  <mat-list-item
+    *ngFor="let prompt of prompts"
+    (click)="selectPrompt.emit(prompt)">
+    <span>{{ prompt.appName }} - {{ prompt.latestVersion?.content | slice:0:30 }}...</span>
+  </mat-list-item>
+</mat-nav-list>
