@@ -1,3 +1,6 @@
+seed data 
+node seed-redis-prompts.js
+
 curl http://localhost:3000/prompts
 curl http://localhost:3000/prompts/<promptId>
 curl -X PUT http://localhost:3000/prompts/<promptId> \
