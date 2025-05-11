@@ -1,25 +1,79 @@
-<div class="home-container">
-  <h1>Welcome to PromptStudio</h1>
-  <p>
-    Manage, version, and test your LLM prompts. Learn about prompt engineering, supported LLMs, and best practices.
-  </p>
-  <mat-card>
-    <h2>Getting Started</h2>
-    <p>Browse public prompts or create your own!</p>
-    <button mat-raised-button color="primary" routerLink="/public-prompts">Explore Public Prompts</button>
-  </mat-card>
-  <mat-card>
-    <h2>Supported LLMs</h2>
-    <ul>
-      <li>OpenAI GPT-4o (default)</li>
-      <!-- Add more as you support them -->
-    </ul>
-  </mat-card>
-  <mat-card>
-    <h2>Prompt Engineering Techniques</h2>
-    <ul>
-      <li>Zero-shot, few-shot, chain-of-thought, etc.</li>
-      <li>See <a href="https://www.promptingguide.ai/" target="_blank">Prompting Guide</a></li>
-    </ul>
-  </mat-card>
+<div class="home-container" [class.dark-theme]="isDarkTheme | async">
+  <div class="hero-section" @fadeIn>
+    <h1 class="title">Welcome to PromptStudio</h1>
+    <p class="description">
+      Manage, version, and test your LLM prompts. Learn about prompt engineering, supported LLMs, and best practices.
+    </p>
+  </div>
+
+  <div class="metrics-grid">
+    <mat-card class="metric-card" @fadeIn>
+      <div class="metric-value">2,500+</div>
+      <div class="metric-label">Total Prompts</div>
+    </mat-card>
+    <mat-card class="metric-card" @fadeIn>
+      <div class="metric-value">98%</div>
+      <div class="metric-label">Success Rate</div>
+    </mat-card>
+    <mat-card class="metric-card" @fadeIn>
+      <div class="metric-value">45</div>
+      <div class="metric-label">Active Users</div>
+    </mat-card>
+  </div>
+
+  <div class="charts-section">
+    <mat-card class="chart-card" @slideIn>
+      <h2>Prompt Distribution</h2>
+      <ngx-charts-pie-chart
+        [results]="promptStats"
+        [gradient]="true"
+        [legend]="true"
+        [labels]="true"
+        [doughnut]="true"
+        [arcWidth]="0.5"
+        [view]="view"
+        [colorScheme]="colorScheme">
+      </ngx-charts-pie-chart>
+    </mat-card>
+
+    <mat-card class="chart-card" @slideIn>
+      <h2>Monthly Usage</h2>
+      <ngx-charts-line-chart
+        [results]="usageData"
+        [gradient]="true"
+        [xAxis]="true"
+        [yAxis]="true"
+        [legend]="true"
+        [showXAxisLabel]="true"
+        [showYAxisLabel]="true"
+        [view]="view"
+        [colorScheme]="colorScheme">
+      </ngx-charts-line-chart>
+    </mat-card>
+  </div>
+
+  <div class="features-section">
+    <mat-card class="feature-card" @fadeIn>
+      <h2>Getting Started</h2>
+      <p>Browse public prompts or create your own!</p>
+      <button mat-raised-button color="primary" routerLink="/public-prompts">Explore Public Prompts</button>
+    </mat-card>
+
+    <mat-card class="feature-card" @fadeIn>
+      <h2>Supported LLMs</h2>
+      <ul>
+        <li>OpenAI GPT-4 (default)</li>
+        <li>Claude 3 Opus</li>
+        <li>Gemini Pro</li>
+      </ul>
+    </mat-card>
+
+    <mat-card class="feature-card" @fadeIn>
+      <h2>Prompt Engineering Techniques</h2>
+      <ul>
+        <li>Zero-shot, few-shot, chain-of-thought, etc.</li>
+        <li>See <a href="https://www.promptingguide.ai/" target="_blank" class="link">Prompting Guide</a></li>
+      </ul>
+    </mat-card>
+  </div>
 </div>

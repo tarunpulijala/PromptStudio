@@ -1,8 +1,13 @@
-<mat-toolbar color="primary">
-  <span>PromptStudio</span>
-  <span class="spacer"></span>
-  <a mat-button routerLink="/">Home</a>
-  <a mat-button routerLink="/my-prompts">My Prompts</a>
-  <a mat-button routerLink="/public-prompts">Public Prompts</a>
+  <mat-toolbar color="primary">
+  <span class="logo">PromptStudio</span>
+    <span class="spacer"></span>
+  <div class="nav-buttons">
+    <a mat-button routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Home</a>
+    <a mat-button routerLink="/my-prompts" routerLinkActive="active">My Prompts</a>
+    <a mat-button routerLink="/public-prompts" routerLinkActive="active">Public Prompts</a>
+  </div>
+  <button mat-icon-button (click)="toggleTheme()" class="theme-toggle">
+    <mat-icon>{{ (isDarkTheme$ | async) ? 'light_mode' : 'dark_mode' }}</mat-icon>
+  </button>
 </mat-toolbar>
 <router-outlet></router-outlet>
