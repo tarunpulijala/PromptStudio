@@ -13,5 +13,18 @@
 		"openai": "^4.0.0",
 		"redis": "^5.0.0",
 		"uuid": "^9.0.1"
+	},
+	"typeorm": {
+		"type": "postgres",
+		"host": "localhost",
+		"port": 5432,
+		"username": "postgres",
+		"password": "your_password",
+		"database": "promptstudio",
+		"synchronize": true,
+		"logging": true,
+		"entities": ["dist/entities/*.js"],
+		"migrations": ["dist/migrations/*.js"],
+		"subscribers": ["dist/subscribers/*.js"]
 	}
 }
