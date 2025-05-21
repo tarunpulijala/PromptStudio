@@ -1,9 +1,18 @@
-from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker
+import os
+import sys
+from pathlib import Path
+
+# Add the project root directory to Python path
+project_root = str(Path(__file__).parent.parent.parent)
+if project_root not in sys.path:
+    sys.path.append(project_root)
+
 from app.core.config import settings
 from app.models.prompt import Base, Prompt, PromptVersion
 from app.models.user import User, Base as UserBase
 import logging
+from sqlalchemy import create_engine
+from sqlalchemy.orm import sessionmaker
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)

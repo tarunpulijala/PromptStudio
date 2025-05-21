@@ -32,6 +32,9 @@ source venv/bin/activate
 # Install dependencies
 pip install -r requirements.txt
 
+# Run the initialization script
+python scripts/init_database.py
+
 # Connect to PostgreSQL
 psql -U postgres
 
