@@ -23,8 +23,14 @@
 		"database": "promptstudio",
 		"synchronize": true,
 		"logging": true,
-		"entities": ["dist/entities/*.js"],
-		"migrations": ["dist/migrations/*.js"],
-		"subscribers": ["dist/subscribers/*.js"]
+		"entities": [
+			"dist/entities/*.js"
+		],
+		"migrations": [
+			"dist/migrations/*.js"
+		],
+		"subscribers": [
+			"dist/subscribers/*.js"
+		]
 	}
 }
